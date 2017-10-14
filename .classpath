@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="processing-library-template-3.0.2/resources/code"/>
 	<classpathentry kind="src" path="processing-library-template-3.0.2/src"/>
-	<classpathentry kind="src" path="processing-library-template-3.0.2/tmp/RedohmLibrary/src"/>
+	<classpathentry kind="lib" path="C:/Users/Bertrand/Documents/dossierBertrandRedohm/CloudStation/Eclipse/_thirdParty/processingLibraries/serial.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Bertrand/Documents/dossierBertrandRedohm/CloudStation/Eclipse/_thirdParty/processingLibraries/jssc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Bertrand/Documents/dossierBertrandRedohm/CloudStation/Eclipse/_thirdParty/processingLibraries/core.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
