@@ -14,15 +14,10 @@ import java.util.Optional;
 public class RedohmDataModel {
 
 	public static final float INVALID_VALUE = Float.MIN_VALUE;
-	
+
 	private final List<RedohmDataInfo> dataInfoList;
 
 	public RedohmDataModel(RedohmDataInfo... dataInfos) {
-		
-		for (RedohmDataInfo redohmDataInfo : dataInfos) {
-			System.out.println("Found specified instance of dataInfo with name: "  + redohmDataInfo.getName()); 
-		}
-		
 		this.dataInfoList = new ArrayList<RedohmDataInfo>();
 		dataInfoList.addAll(Arrays.asList(dataInfos));
 	}
@@ -30,9 +25,10 @@ public class RedohmDataModel {
 	public int getDataCount() {
 		return dataInfoList.size();
 	}
-	
+
 	private final RedohmDataInfo getDataInfo(final String name) {
-		final Optional<RedohmDataInfo> dataInfoIfExists = dataInfoList.stream().filter(p -> p.getName() == name).findFirst();
+		final Optional<RedohmDataInfo> dataInfoIfExists = dataInfoList.stream().filter(p -> p.getName() == name)
+				.findFirst();
 		if (!dataInfoIfExists.isPresent()) {
 			// TODO: log error/warning
 			return null;
@@ -41,25 +37,25 @@ public class RedohmDataModel {
 		// Returns the RedohmDataInfo.
 		return dataInfoIfExists.get();
 	}
-	
+
 	public final float getDataValue(final String name) {
 		RedohmDataInfo dataInfo = getDataInfo(name);
 		if (dataInfo == null)
 			return INVALID_VALUE;
-		
+
 		return dataInfo.getValue();
 	}
-	
+
 	public final float getMappedValue(final String name) {
 		RedohmDataInfo dataInfo = getDataInfo(name);
 		if (dataInfo == null)
 			return INVALID_VALUE;
-		
+
 		return dataInfo.getMappedValue();
 	}
 
 	public final Iterator<RedohmDataInfo> getIterator() {
 		return dataInfoList.iterator();
 	}
-	
+
 }

@@ -2,6 +2,7 @@ package fr.redohm.parsing;
 
 import java.util.Iterator;
 
+import fr.redohm.utils.RedohmLogUtils;
 import processing.serial.Serial;
 
 public class RedohmDataParser {
@@ -21,6 +22,13 @@ public class RedohmDataParser {
 		int iterationCount = measureCount;
 		int awaitedDataCount = dataModel.getDataCount();
 
+		// Requests sampling initialization.
+		Iterator<RedohmDataInfo> initializationIterator = dataModel.getIterator();
+		while (initializationIterator.hasNext()) {
+			final RedohmDataInfo dataInfo = initializationIterator.next();
+			dataInfo.initializeSampling();
+		}
+
 		while (true) {
 			// Lecture du prochain message disponible.
 			message = myPort.readStringUntil('\n');
@@ -30,20 +38,20 @@ public class RedohmDataParser {
 			// L'exÃ©cution suivante prendra en charge les messages en attente.
 			if (message == null)
 				continue;
-			
+
 			// TODO: log debug message println(message);
 
 			// DÃ©codage du message reÃ§u; il doit impÃ©rativement respecter le format :
 			// x;y;z
 			final String[] values = message.split(separator);
 			if (values.length != awaitedDataCount) {
-				System.err.println("Le message suivant n'a pas le bon format (" + awaitedDataCount
+				RedohmLogUtils.logMessage("Le message suivant n'a pas le bon format (" + awaitedDataCount
 						+ " valeur(s) sont attendue(s), séparée(s) par '" + separator + "'): " + message);
 				continue;
 			}
 
 			// TODO: find a better way to update the temp value ...
-			
+
 			// Convertion des valeurs reçues en Float.
 			try {
 				int valueIndex = 0;
@@ -51,28 +59,28 @@ public class RedohmDataParser {
 				while (iterator.hasNext()) {
 					final RedohmDataInfo dataInfo = iterator.next();
 					final float value = Float.parseFloat(values[valueIndex++].trim());
-					//System.out.println("Parsed new value : " + value);
-					dataInfo.addValue(value);
+					// System.out.println("Parsed new value : " + value);
+					dataInfo.addSamplingValue(value);
 				}
 			} catch (NumberFormatException e) {
 				// Affichage d'un message d'erreur.
-				System.err.println(
+				RedohmLogUtils.logException(
 						"Impossible de convertir l'une des valeurs en entier ... le message suivant est donc totalement ignoré : "
-								+ message);
-				e.printStackTrace();
+								+ message,
+						e);
 				continue;
 			}
-			
+
 			// Decrements iteration count only HERE to ensure all "safe-guard" are OK.
-			if (iterationCount-- <= 0)
+			if (--iterationCount <= 0)
 				break;
 		}
-		
+
 		// Lissage des valeurs, en redivisant par le nombre de mesures ...
-		Iterator<RedohmDataInfo> iterator = dataModel.getIterator();
-		while (iterator.hasNext()) {
-			final RedohmDataInfo dataInfo = iterator.next();
-			dataInfo.setValue(dataInfo.getValue()/measureCount);
+		Iterator<RedohmDataInfo> finalizationIterator = dataModel.getIterator();
+		while (finalizationIterator.hasNext()) {
+			final RedohmDataInfo dataInfo = finalizationIterator.next();
+			dataInfo.finalizeSampling(measureCount);
 		}
 	}
 
@@ -83,5 +91,5 @@ public class RedohmDataParser {
 	public final float getMappedValue(final String name) {
 		return dataModel.getMappedValue(name);
 	}
-	
+
 }
