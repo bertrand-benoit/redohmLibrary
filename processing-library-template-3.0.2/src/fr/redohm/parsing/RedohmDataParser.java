@@ -46,13 +46,13 @@ public class RedohmDataParser {
 			final String[] values = message.split(separator);
 			if (values.length != awaitedDataCount) {
 				RedohmLogUtils.logMessage("Le message suivant n'a pas le bon format (" + awaitedDataCount
-						+ " valeur(s) sont attendue(s), séparée(s) par '" + separator + "'): " + message);
+						+ " valeur(s) sont attendue(s), separee(s) par '" + separator + "'): " + message);
 				continue;
 			}
 
 			// TODO: find a better way to update the temp value ...
 
-			// Convertion des valeurs reçues en Float.
+			// Convertion des valeurs reeues en Float.
 			try {
 				int valueIndex = 0;
 				Iterator<RedohmDataInfo> iterator = dataModel.getIterator();
@@ -65,7 +65,7 @@ public class RedohmDataParser {
 			} catch (NumberFormatException e) {
 				// Affichage d'un message d'erreur.
 				RedohmLogUtils.logException(
-						"Impossible de convertir l'une des valeurs en entier ... le message suivant est donc totalement ignoré : "
+						"Impossible de convertir l'une des valeurs en entier ... le message suivant est donc totalement ignore : "
 								+ message,
 						e);
 				continue;
@@ -90,6 +90,14 @@ public class RedohmDataParser {
 
 	public final float getMappedValue(final String name) {
 		return dataModel.getMappedValue(name);
+	}
+
+	public final float getMinSampledValue(final String name) {
+		return dataModel.getMinSampledValue(name);
+	}
+
+	public final float getMaxSampledValue(final String name) {
+		return dataModel.getMaxSampledValue(name);
 	}
 
 }

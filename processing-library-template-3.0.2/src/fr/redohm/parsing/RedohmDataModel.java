@@ -46,6 +46,22 @@ public class RedohmDataModel {
 		return dataInfo.getValue();
 	}
 
+	public final float getMinSampledValue(final String name) {
+		RedohmDataInfo dataInfo = getDataInfo(name);
+		if (dataInfo == null)
+			return INVALID_VALUE;
+
+		return dataInfo.getMinSampledValue();
+	}
+
+	public final float getMaxSampledValue(final String name) {
+		RedohmDataInfo dataInfo = getDataInfo(name);
+		if (dataInfo == null)
+			return INVALID_VALUE;
+
+		return dataInfo.getMaxSampledValue();
+	}
+
 	public final float getMappedValue(final String name) {
 		RedohmDataInfo dataInfo = getDataInfo(name);
 		if (dataInfo == null)

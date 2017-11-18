@@ -34,6 +34,8 @@ public final class RedohmDataInfo {
 	 * finalization.
 	 */
 	private float samplingValueBuffer;
+	private float minSampledValue;
+	private float maxSampledValue; 
 
 	public RedohmDataInfo(String name, String type, float minValue, float maxValue, float mappedMinValue,
 			float mappedMaxValue) {
@@ -46,6 +48,8 @@ public final class RedohmDataInfo {
 
 		this.value = 0.0f;
 		this.samplingValueBuffer = 0.0f;
+		this.minSampledValue = 0.0f;
+		this.maxSampledValue = 0.0f;
 	}
 
 	public final String getName() {
@@ -76,6 +80,14 @@ public final class RedohmDataInfo {
 		return value;
 	}
 
+	public float getMinSampledValue() {
+		return minSampledValue;
+	}
+
+	public float getMaxSampledValue() {
+		return maxSampledValue;
+	}
+
 	final void initializeSampling() {
 		samplingValueBuffer = 0.0f;
 	}
@@ -104,6 +116,10 @@ public final class RedohmDataInfo {
 
 	private void setValue(float value) {
 		this.value = value;
+		
+
+		this.minSampledValue = Math.min(minSampledValue, value);
+		this.maxSampledValue = Math.max(maxSampledValue, value);
 	}
 
 	public float getMappedValue() {
