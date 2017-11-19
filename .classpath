@@ -2,8 +2,28 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="processing-library-template-3.0.2/src"/>
-	<classpathentry kind="lib" path="C:/Users/Bertrand/Documents/dossierBertrandRedohm/CloudStation/Eclipse/_thirdParty/processingLibraries/serial.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Bertrand/Documents/dossierBertrandRedohm/CloudStation/Eclipse/_thirdParty/processingLibraries/jssc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Bertrand/Documents/dossierBertrandRedohm/CloudStation/Eclipse/_thirdParty/processingLibraries/core.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Bertrand/Documents/dossierBertrandRedohm/CloudStation/_thirdParty/Eclipse/processingLibraries/serial.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Bertrand/Documents/dossierBertrandRedohm/CloudStation/_thirdParty/Eclipse/processingLibraries/jssc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Bertrand/Documents/dossierBertrandRedohm/CloudStation/_thirdParty/Eclipse/processingLibraries/core.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Bertrand/Documents/dossierBertrandRedohm/CloudStation/_thirdParty/Eclipse/processingLibraries/jogl-all.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Bertrand/Documents/dossierBertrandRedohm/CloudStation/_thirdParty/Eclipse/processingLibraries/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Bertrand/Documents/dossierBertrandRedohm/CloudStation/_thirdParty/Eclipse/processingLibraries/gluegen-rt-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/core.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/gluegen-rt-natives-linux-aarch64.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/gluegen-rt-natives-linux-amd64.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/gluegen-rt-natives-linux-armv6hf.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/gluegen-rt-natives-linux-i586.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/gluegen-rt-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/gluegen-rt-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/gluegen-rt-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/jogl-all.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/jogl-all-natives-linux-aarch64.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/jogl-all-natives-linux-amd64.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/jogl-all-natives-linux-armv6hf.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/jogl-all-natives-linux-i586.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/jogl-all-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/jogl-all-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="C:/tools/processing/core/library/jogl-all-natives-windows-i586.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
