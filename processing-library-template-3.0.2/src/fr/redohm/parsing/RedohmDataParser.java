@@ -2,16 +2,17 @@ package fr.redohm.parsing;
 
 import java.util.Iterator;
 
+import fr.redohm.RedohmLibraryException;
+import fr.redohm.net.IRedohmSerialPort;
 import fr.redohm.utils.RedohmLogUtils;
-import processing.serial.Serial;
 
 public class RedohmDataParser {
 
-	private Serial myPort;
+	private IRedohmSerialPort myPort;
 	private RedohmDataModel dataModel;
 	private String separator;
 
-	public RedohmDataParser(RedohmDataModel dataModel, String separator, Serial myPort) {
+	public RedohmDataParser(RedohmDataModel dataModel, String separator, IRedohmSerialPort myPort) {
 		this.dataModel = dataModel;
 		this.separator = separator;
 		this.myPort = myPort;
@@ -31,7 +32,12 @@ public class RedohmDataParser {
 
 		while (true) {
 			// Lecture du prochain message disponible.
-			message = myPort.readStringUntil('\n');
+		    try {
+		        message = myPort.readNextLine();
+	        } catch (RedohmLibraryException e) {
+	            RedohmLogUtils.logException("Error while reading next line from serial port.", e);
+	            continue;
+	        }
 			// Vérification : on s'assure qu'un message AVEC fin de ligne est bien
 			// disponible sur le port,
 			// sinon on ne fait rien de plus dans cette exécution de draw().

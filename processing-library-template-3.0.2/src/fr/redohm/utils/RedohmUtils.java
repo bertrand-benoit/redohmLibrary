@@ -1,6 +1,32 @@
 package fr.redohm.utils;
 
 public final class RedohmUtils {
+	public final static String VERSION = "##library.prettyVersion##";
+	
+	/**
+	 * System property allowing to define if you wan to fake/emulate sampling from Hardware (e.g. Arduino ...), 
+	 *  using a randomizer or a file containing registered sampling information. 
+	 */
+	public final static String ENABLE_SAMPLING_EMULATION_PROPERTY = "ENABLE_SAMPLING_EMULATION";
+	
+	/**
+	 * System property allowing to define main directory containing registered sampling data files to use
+	 *  to emulate sampling.  
+	 */
+	public final static String SAMPLING_EMULATION_DIR_PROPERTY = "SAMPLING_EMULATION_DIR_PATH";
+
+	/**
+	 * return the version of the Library.
+	 * 
+	 * @return String
+	 */
+	public static String version() {
+		return VERSION;
+	}
+	
+	public static boolean emulateSamplingRequired() {
+		return Boolean.getBoolean(ENABLE_SAMPLING_EMULATION_PROPERTY);
+	}
 
 	public static final float map(float value, float start1, float stop1, float start2, float stop2) {
 		// Cf.
