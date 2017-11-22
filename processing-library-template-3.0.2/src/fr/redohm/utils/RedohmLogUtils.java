@@ -11,8 +11,17 @@ public final class RedohmLogUtils {
 	
 	// TODO: uses a logger system like the Apache one.
 
+	public static final void logLibraryInfo() {
+		logMessage("##library.name## ##library.prettyVersion## by ##author##");
+	}
+
 	public static final void logMessage(final String message) {
 		System.out.println(message);
+	}
+
+	public static void logDebug(final String message) {		
+		// TODO: implement DEBUG system.
+		logMessage(message);
 	}
 
 	public static final void logWarning(final String message) {
