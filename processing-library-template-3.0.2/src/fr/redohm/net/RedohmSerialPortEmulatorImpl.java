@@ -18,12 +18,24 @@ public final class RedohmSerialPortEmulatorImpl implements IRedohmSerialPort {
     private String parentDirectoryPath = null;
 
     private final List<Path> samplingFileList;
+    private final int delayInMilliSeconds;
     private Iterator<Path> samplingFileListIterator;
 
     private List<String> currentSamplingLines = null;
 
     public RedohmSerialPortEmulatorImpl() {
         samplingFileList = new ArrayList<Path>();
+
+        String definedDelay = System.getProperty(RedohmUtils.SAMPLING_EMULATION_DELAY_MILLI, "0");
+        int parsedDelayInMilliSeconds;
+        try {
+            parsedDelayInMilliSeconds = Integer.parseInt(definedDelay);
+        } catch (NumberFormatException e) {
+            RedohmLogUtils.logError("Specified SAMPLING_EMULATION_DELAY_MILLI '" + definedDelay
+                    + "' is NOT a number ! Disabling Emulation sampling delay.");
+            parsedDelayInMilliSeconds = 0;
+        }
+        delayInMilliSeconds = parsedDelayInMilliSeconds;
     }
 
     @Override
@@ -90,13 +102,14 @@ public final class RedohmSerialPortEmulatorImpl implements IRedohmSerialPort {
             throw new RedohmLibraryException("Error while reading sampling file.", e);
         }
 
-//        try {
-//            Thread.sleep(500);
-//        } catch (InterruptedException e) {
-//            RedohmLogUtils.logException(
-//                    "Exception occurs while sleeping because there is no more sampling files to manage.",
-//                    e);
-//        }
+        // Emulates sampling delay.
+        if (delayInMilliSeconds > 0) {
+	        try {
+	            Thread.sleep(delayInMilliSeconds);
+	        } catch (InterruptedException e) {
+	            RedohmLogUtils.logException("Exception occurs while emulating sampling delay ...", e);
+	        }
+        }
         return currentSamplingLines.remove(0);
     }
 
