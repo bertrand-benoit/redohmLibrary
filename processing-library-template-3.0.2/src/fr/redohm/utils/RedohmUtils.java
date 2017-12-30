@@ -8,6 +8,11 @@ public final class RedohmUtils {
 	 *  using a randomizer or a file containing registered sampling information. 
 	 */
 	public final static String ENABLE_SAMPLING_EMULATION_PROPERTY = "ENABLE_SAMPLING_EMULATION";
+
+	/**
+	 * System property allowing to define the delay, in ms, to wait before emulating data sampling.
+	 */
+	public final static String SAMPLING_EMULATION_DELAY_MILLI = "SAMPLING_EMULATION_DELAY_MILLI";
 	
 	/**
 	 * System property allowing to define main directory containing registered sampling data files to use
